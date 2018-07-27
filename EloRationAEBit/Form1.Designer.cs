@@ -42,15 +42,16 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(104, 317);
+            this.button1.Location = new System.Drawing.Point(128, 317);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Рассчитать";
+            this.button1.Text = "(50)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -123,54 +124,65 @@
             this.RatioAfter1.AutoSize = true;
             this.RatioAfter1.Location = new System.Drawing.Point(104, 231);
             this.RatioAfter1.Name = "RatioAfter1";
-            this.RatioAfter1.Size = new System.Drawing.Size(35, 13);
+            this.RatioAfter1.Size = new System.Drawing.Size(93, 13);
             this.RatioAfter1.TabIndex = 9;
-            this.RatioAfter1.Text = "label5";
+            this.RatioAfter1.Text = "Рейтинг после = ";
             // 
             // RatioAfter2
             // 
             this.RatioAfter2.AutoSize = true;
             this.RatioAfter2.Location = new System.Drawing.Point(368, 231);
             this.RatioAfter2.Name = "RatioAfter2";
-            this.RatioAfter2.Size = new System.Drawing.Size(35, 13);
+            this.RatioAfter2.Size = new System.Drawing.Size(93, 13);
             this.RatioAfter2.TabIndex = 10;
-            this.RatioAfter2.Text = "label6";
+            this.RatioAfter2.Text = "Рейтинг после = ";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(185, 317);
+            this.button2.Location = new System.Drawing.Point(209, 317);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 11;
-            this.button2.Text = "Группа";
+            this.button2.Text = "Группа(20)";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(266, 317);
+            this.button3.Location = new System.Drawing.Point(290, 317);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 12;
-            this.button3.Text = "Верхняя";
+            this.button3.Text = "Верхняя(70)";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(347, 317);
+            this.button4.Location = new System.Drawing.Point(371, 317);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 13;
-            this.button4.Text = "нижняя";
+            this.button4.Text = "Нижняя(40)";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(208, 357);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "ФутболЭло";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 418);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -208,6 +220,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 
