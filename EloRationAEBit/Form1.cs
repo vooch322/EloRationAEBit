@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
+using System.Data.Common;
 
 namespace EloRationAEBit
 {
     public partial class Form1 : Form
     {
+        private SQLiteConnection db;
         public Form1()
         {
             InitializeComponent();
@@ -114,6 +117,54 @@ namespace EloRationAEBit
         private void button5_Click(object sender, EventArgs e)
         {
             EloClickFutebol(50);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            EloClickFutebol(80);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            db = new SQLiteConnection("Data Source =EloRatio.db; Version=3");
+            db.Open();
+            DataTable dtable = new DataTable();
+            String  sqlQuery="Select * from players";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sqlQuery, db);
+            adapter.Fill(dtable);
+            if (dtable.Rows.Count > 0)
+            {
+                dataGridView1.Rows.Clear();
+                for (int i = 0; i < dtable.Rows.Count; i++)
+                    dataGridView1.Rows.Add(dtable.Rows[i].ItemArray);
+            }
+            DbDataReader reader = new SQLiteCommand(sqlQuery,db).ExecuteReader();
+            while (reader.Read())
+            {
+                comboBox1.Items.Add((string)reader["name"]);
+                comboBox2.Items.Add((string)reader["name"]);
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            db.Close();
+        }
+
+        private void comboBox2_TextChanged(object sender, EventArgs e)
+        {
+            String sqlquery = "select points from players where name=\"" + comboBox2.Text+"\"";
+            DbDataReader read = new SQLiteCommand(sqlquery, db).ExecuteReader();
+            while (read.Read())
+                textBox1.Text = (string)read["points"].ToString();
+        }
+
+        private void comboBox1_TextChanged(object sender, EventArgs e)
+        {
+            String sqlquery = "select points from players where name=\"" + comboBox1.Text + "\"";
+            DbDataReader read = new SQLiteCommand(sqlquery, db).ExecuteReader();
+            while (read.Read())
+                textBox2.Text = (string)read["points"].ToString();
         }
     }
 }
