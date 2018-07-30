@@ -77,16 +77,22 @@ namespace EloRationAEBit
             {
                 RatioAfter1.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio1, ratio2, 1, k,score1,score2));
                 RatioAfter2.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio2, ratio1, 0, k,score1,score2));
+                WinnerJoinDb(comboBox2.Text,score1,score2,EloFutebol(ratio1,ratio2,1,k,score1,score2));
+                LoseJoinDb(comboBox1.Text, score2, score1, EloFutebol(ratio2, ratio1, 0, k, score1, score2));
             }
             if (score1 < score2)
             {
                 RatioAfter1.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio1, ratio2, 0, k,score1,score2));
                 RatioAfter2.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio2, ratio1, 1, k,score1,score2));
+                WinnerJoinDb(comboBox1.Text, score2, score1, EloFutebol(ratio1, ratio2, 1, k, score1, score2));
+                LoseJoinDb(comboBox2.Text, score1, score2, EloFutebol(ratio2, ratio1, 0, k, score1, score2));
             }
             if (score1 == score2)
             {
                 RatioAfter1.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio1, ratio2, 0.5, k,score1,score2));
                 RatioAfter2.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio2, ratio1, 0.5, k,score1,score2));
+                DrawJoinDb(comboBox2.Text, score1, score2, EloFutebol(ratio1, ratio2, 0.5, k, score1, score2));
+                DrawJoinDb(comboBox1.Text, score2, score1, EloFutebol(ratio2, ratio1, 0.5, k, score1, score2));
             }
         }
         private double ELO(double ratio1,double ratio2,double Sa,double k)
@@ -117,6 +123,7 @@ namespace EloRationAEBit
         private void button5_Click(object sender, EventArgs e)
         {
             EloClickFutebol(50);
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -165,6 +172,43 @@ namespace EloRationAEBit
             DbDataReader read = new SQLiteCommand(sqlquery, db).ExecuteReader();
             while (read.Read())
                 textBox2.Text = (string)read["points"].ToString();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            DataTable dtable = new DataTable();
+            String sqlQuery = "Select * from players";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sqlQuery, db);
+            adapter.Fill(dtable);
+            if (dtable.Rows.Count > 0)
+            {
+                dataGridView1.Rows.Clear();
+                for (int i = 0; i < dtable.Rows.Count; i++)
+                    dataGridView1.Rows.Add(dtable.Rows[i].ItemArray);
+            }
+        }
+        private void WinnerJoinDb(String name,int score1,int score2,double elo)
+        {
+            String SqlQuery = "update players set points=" + elo.ToString() + " ,win=win+1, gs=gs+"+score1.ToString()+" ,gm=gm+"+score2.ToString()+" where name=\""+name+"\"";
+            SQLiteCommand cmd = db.CreateCommand();
+            cmd.CommandText = SqlQuery;
+            cmd.ExecuteNonQuery();
+            Console.Write("SQL");
+        }
+        private void DrawJoinDb(String name, int score1, int score2, double elo)
+        {
+            String SqlQuery = "update players set points=" + elo.ToString() + " ,draw=draw+1, gs=gs+" + score1.ToString() + " ,gm=gm+" + score2.ToString() + " where name=\"" + name + "\"";
+            SQLiteCommand cmd = db.CreateCommand();
+            cmd.CommandText = SqlQuery;
+            cmd.ExecuteNonQuery();
+            Console.Write("SQL");
+        }
+        private void LoseJoinDb(String name, int score1, int score2, double elo)
+        {
+            String SqlQuery = "update players set points=" + elo.ToString() + " ,looses=looses+1 ,gs=gs+" + score1.ToString() + ", gm=gm+" + score2.ToString() + " where name=\"" + name + "\"";
+            SQLiteCommand cmd = db.CreateCommand();
+            cmd.CommandText = SqlQuery;
+            cmd.ExecuteNonQuery();
         }
     }
 }
