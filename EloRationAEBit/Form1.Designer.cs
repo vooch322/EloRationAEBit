@@ -30,12 +30,12 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.player1Points = new System.Windows.Forms.TextBox();
+            this.player2Points = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.player1Goals = new System.Windows.Forms.TextBox();
+            this.player2Goals = new System.Windows.Forms.TextBox();
             this.RatioAfter1 = new System.Windows.Forms.Label();
             this.RatioAfter2 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
@@ -51,8 +51,8 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.player2 = new System.Windows.Forms.ComboBox();
+            this.player1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -79,21 +79,21 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Рейтинг2";
             // 
-            // textBox1
+            // player1Points
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 58);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(165, 20);
-            this.textBox1.TabIndex = 3;
+            this.player1Points.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.player1Points.Location = new System.Drawing.Point(3, 58);
+            this.player1Points.Name = "player1Points";
+            this.player1Points.Size = new System.Drawing.Size(165, 20);
+            this.player1Points.TabIndex = 3;
             // 
-            // textBox2
+            // player2Points
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(3, 218);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(165, 20);
-            this.textBox2.TabIndex = 4;
+            this.player2Points.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.player2Points.Location = new System.Drawing.Point(3, 218);
+            this.player2Points.Name = "player2Points";
+            this.player2Points.Size = new System.Drawing.Size(165, 20);
+            this.player2Points.TabIndex = 4;
             // 
             // label3
             // 
@@ -115,21 +115,21 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Голы2";
             // 
-            // textBox3
+            // player1Goals
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(3, 138);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(165, 20);
-            this.textBox3.TabIndex = 7;
+            this.player1Goals.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.player1Goals.Location = new System.Drawing.Point(3, 138);
+            this.player1Goals.Name = "player1Goals";
+            this.player1Goals.Size = new System.Drawing.Size(165, 20);
+            this.player1Goals.TabIndex = 7;
             // 
-            // textBox4
+            // player2Goals
             // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(3, 308);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(165, 20);
-            this.textBox4.TabIndex = 8;
+            this.player2Goals.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.player2Goals.Location = new System.Drawing.Point(3, 308);
+            this.player2Goals.Name = "player2Goals";
+            this.player2Goals.Size = new System.Drawing.Size(165, 20);
+            this.player2Goals.TabIndex = 8;
             // 
             // RatioAfter1
             // 
@@ -188,7 +188,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(180, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(410, 412);
+            this.dataGridView1.Size = new System.Drawing.Size(410, 427);
             this.dataGridView1.TabIndex = 16;
             // 
             // Column1
@@ -251,7 +251,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(593, 418);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(593, 433);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
             // tableLayoutPanel2
@@ -261,17 +261,17 @@
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button6, 0, 13);
             this.tableLayoutPanel2.Controls.Add(this.button5, 0, 12);
-            this.tableLayoutPanel2.Controls.Add(this.textBox4, 0, 11);
+            this.tableLayoutPanel2.Controls.Add(this.player2Goals, 0, 11);
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 10);
             this.tableLayoutPanel2.Controls.Add(this.RatioAfter2, 0, 9);
-            this.tableLayoutPanel2.Controls.Add(this.textBox2, 0, 8);
+            this.tableLayoutPanel2.Controls.Add(this.player2Points, 0, 8);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox1, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.textBox3, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.player2, 0, 7);
+            this.tableLayoutPanel2.Controls.Add(this.player1Goals, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.RatioAfter1, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox2, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.player1Points, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.player1, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.button1, 0, 14);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
@@ -292,28 +292,28 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(171, 412);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(171, 427);
             this.tableLayoutPanel2.TabIndex = 17;
             // 
-            // comboBox1
+            // player2
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 188);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(165, 21);
-            this.comboBox1.TabIndex = 16;
-            this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
+            this.player2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.player2.FormattingEnabled = true;
+            this.player2.Location = new System.Drawing.Point(3, 188);
+            this.player2.Name = "player2";
+            this.player2.Size = new System.Drawing.Size(165, 21);
+            this.player2.TabIndex = 16;
+            this.player2.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
             // 
-            // comboBox2
+            // player1
             // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(3, 28);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(165, 21);
-            this.comboBox2.TabIndex = 17;
-            this.comboBox2.TextChanged += new System.EventHandler(this.comboBox2_TextChanged);
+            this.player1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.player1.FormattingEnabled = true;
+            this.player1.Location = new System.Drawing.Point(3, 28);
+            this.player1.Name = "player1";
+            this.player1.Size = new System.Drawing.Size(165, 21);
+            this.player1.TabIndex = 17;
+            this.player1.TextChanged += new System.EventHandler(this.comboBox2_TextChanged);
             // 
             // button1
             // 
@@ -330,7 +330,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 418);
+            this.ClientSize = new System.Drawing.Size(593, 433);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -347,12 +347,12 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox player1Points;
+        private System.Windows.Forms.TextBox player2Points;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox player1Goals;
+        private System.Windows.Forms.TextBox player2Goals;
         private System.Windows.Forms.Label RatioAfter1;
         private System.Windows.Forms.Label RatioAfter2;
         private System.Windows.Forms.Button button5;
@@ -360,8 +360,8 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox player2;
+        private System.Windows.Forms.ComboBox player1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

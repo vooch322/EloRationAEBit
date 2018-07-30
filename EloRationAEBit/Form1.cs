@@ -45,10 +45,10 @@ namespace EloRationAEBit
             
             double ratio1, ratio2;
             int score1, score2;
-            ratio1 = Convert.ToInt32(textBox1.Text);
-            ratio2 = Convert.ToInt32(textBox2.Text);
-            score1 = Convert.ToInt32(textBox3.Text);
-            score2 = Convert.ToInt32(textBox4.Text);
+            ratio1 = Convert.ToInt32(player1Points.Text);
+            ratio2 = Convert.ToInt32(player2Points.Text);
+            score1 = Convert.ToInt32(player1Goals.Text);
+            score2 = Convert.ToInt32(player2Goals.Text);
             if (score1 > score2)
             {
                 RatioAfter1.Text = "Рейтинг после = "+ Convert.ToString(ELO(ratio1, ratio2, 1, k));
@@ -69,30 +69,30 @@ namespace EloRationAEBit
         {
             double ratio1, ratio2;
             int score1, score2;
-            ratio1 = Convert.ToInt32(textBox1.Text);
-            ratio2 = Convert.ToInt32(textBox2.Text);
-            score1 = Convert.ToInt32(textBox3.Text);
-            score2 = Convert.ToInt32(textBox4.Text);
+            ratio1 = Convert.ToInt32(player1Points.Text);
+            ratio2 = Convert.ToInt32(player2Points.Text);
+            score1 = Convert.ToInt32(player1Goals.Text);
+            score2 = Convert.ToInt32(player2Goals.Text);
             if (score1 > score2)
             {
                 RatioAfter1.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio1, ratio2, 1, k,score1,score2));
                 RatioAfter2.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio2, ratio1, 0, k,score1,score2));
-                WinnerJoinDb(comboBox2.Text,score1,score2,EloFutebol(ratio1,ratio2,1,k,score1,score2));
-                LoseJoinDb(comboBox1.Text, score2, score1, EloFutebol(ratio2, ratio1, 0, k, score1, score2));
+                WinnerJoinDb(player1.Text,score1,score2,EloFutebol(ratio1,ratio2,1,k,score1,score2));
+                LoseJoinDb(player2.Text, score2, score1, EloFutebol(ratio2, ratio1, 0, k, score1, score2));
             }
             if (score1 < score2)
             {
                 RatioAfter1.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio1, ratio2, 0, k,score1,score2));
                 RatioAfter2.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio2, ratio1, 1, k,score1,score2));
-                WinnerJoinDb(comboBox1.Text, score2, score1, EloFutebol(ratio1, ratio2, 1, k, score1, score2));
-                LoseJoinDb(comboBox2.Text, score1, score2, EloFutebol(ratio2, ratio1, 0, k, score1, score2));
+                WinnerJoinDb(player2.Text, score2, score1, EloFutebol(ratio2, ratio1, 1, k, score1, score2));
+                LoseJoinDb(player1.Text, score1, score2, EloFutebol(ratio1, ratio2, 0, k, score1, score2));
             }
             if (score1 == score2)
             {
                 RatioAfter1.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio1, ratio2, 0.5, k,score1,score2));
                 RatioAfter2.Text = "Рейтинг после = " + Convert.ToString(EloFutebol(ratio2, ratio1, 0.5, k,score1,score2));
-                DrawJoinDb(comboBox2.Text, score1, score2, EloFutebol(ratio1, ratio2, 0.5, k, score1, score2));
-                DrawJoinDb(comboBox1.Text, score2, score1, EloFutebol(ratio2, ratio1, 0.5, k, score1, score2));
+                DrawJoinDb(player1.Text, score1, score2, EloFutebol(ratio1, ratio2, 0.5, k, score1, score2));
+                DrawJoinDb(player2.Text, score2, score1, EloFutebol(ratio2, ratio1, 0.5, k, score1, score2));
             }
         }
         private double ELO(double ratio1,double ratio2,double Sa,double k)
@@ -148,8 +148,8 @@ namespace EloRationAEBit
             DbDataReader reader = new SQLiteCommand(sqlQuery,db).ExecuteReader();
             while (reader.Read())
             {
-                comboBox1.Items.Add((string)reader["name"]);
-                comboBox2.Items.Add((string)reader["name"]);
+                player2.Items.Add((string)reader["name"]);
+                player1.Items.Add((string)reader["name"]);
             }
         }
 
@@ -160,18 +160,18 @@ namespace EloRationAEBit
 
         private void comboBox2_TextChanged(object sender, EventArgs e)
         {
-            String sqlquery = "select points from players where name=\"" + comboBox2.Text+"\"";
+            String sqlquery = "select points from players where name=\"" + player1.Text+"\"";
             DbDataReader read = new SQLiteCommand(sqlquery, db).ExecuteReader();
             while (read.Read())
-                textBox1.Text = (string)read["points"].ToString();
+                player1Points.Text = (string)read["points"].ToString();
         }
 
         private void comboBox1_TextChanged(object sender, EventArgs e)
         {
-            String sqlquery = "select points from players where name=\"" + comboBox1.Text + "\"";
+            String sqlquery = "select points from players where name=\"" + player2.Text + "\"";
             DbDataReader read = new SQLiteCommand(sqlquery, db).ExecuteReader();
             while (read.Read())
-                textBox2.Text = (string)read["points"].ToString();
+                player2Points.Text = (string)read["points"].ToString();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
