@@ -128,7 +128,7 @@ namespace EloRationAEBit
 
         private void button6_Click(object sender, EventArgs e)
         {
-            EloClickFutebol(80);
+            EloClickFutebol(40);
         }
 
         private void Form1_Load(object sender, EventArgs e)
