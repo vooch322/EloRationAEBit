@@ -13,7 +13,10 @@ using Telegram.Bot.Args;
 using System.Diagnostics;
 using Telegram.Bot;
 using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types;
 using EloRationAEBit.Models;
+using System.IO;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace EloRationAEBit
 {
@@ -250,6 +253,14 @@ namespace EloRationAEBit
             else
             {
                 Debug.WriteLine("message = ", message.Text);
+                Debug.WriteLine(message.Chat.Id);
+                /*using (StreamWriter outputFile = new StreamWriter("match.txt", true))
+                {
+                    
+                    outputFile.WriteLine("\n" + message.Chat.Id+" "+message.Text+" "+DateTime.Now);
+                    
+
+                }*/
                 switch (message.Text.Split(' ').First())
                 {
                     case "/rating":
@@ -270,11 +281,113 @@ namespace EloRationAEBit
                         var count = 1;
                         fifaPlayers = fifaPlayers.OrderByDescending(v => v.Elo).ToList();
                         foreach (var fifaPlayer in fifaPlayers)
-                        {                            
+                        {
                             result = result + $"{count} {fifaPlayer.Name} {fifaPlayer.Elo} \n";
                             count++;
                         }
                         await Bot.SendTextMessageAsync(message.Chat.Id, $"РАНК ИМЯ РЕЙТИНГ \n" + result);
+                        break;
+                    case "/hi":
+                        await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
+
+                        /* await Task.Delay(500); // simulate longer running task
+
+                         var inlineKeyboard = new InlineKeyboardMarkup(new[]
+                         {
+                         new [] // first row
+                         {
+                             InlineKeyboardButton.WithCallbackData("1.1"),
+                             InlineKeyboardButton.WithCallbackData("1.2"),
+                         },
+                         new [] // second row
+                         {
+                             InlineKeyboardButton.WithCallbackData("2.1"),
+                             InlineKeyboardButton.WithCallbackData("2.2"),
+                         }
+                     });*/
+                        Random rnd = new Random();
+
+                        int[] a = new int[3] {1,2,3}, b = new int[3] {4,5,6 }, c = new int[3] { 7,9,10}, d = new int[2] {12,13};
+                        int k = 0;
+                        
+                        string grA="", grB="", grC="";
+                        
+                        for (int i = a.Length-1; i >1; i--)
+                        {
+                            int o;
+                            k = rnd.Next(0, i);
+                            o = b[k];
+                            b[k] = b[i];
+                            b[i] = o;
+                        }
+                        for (int i = b.Length - 1; i > 1; i--)
+                        {
+                            int o;
+                            k = rnd.Next(0, i);
+                            o = a[k];
+                            a[k] = a[i];
+                            a[i] = o;
+                        }
+                        for (int i = c.Length - 1; i > 1; i--)
+                        {
+                            int o;
+                            k = rnd.Next(0, i);
+                            o = c[k];
+                            c[k] = c[i];
+                            c[i] = o;
+                        }
+                        for (int i = d.Length - 1; i > 1; i--)
+                        {
+                            int o;
+                            k = rnd.Next(0, i);
+                            o = d[k];
+                            d[k] = d[i];
+                            d[i] = o;
+                        }
+                        grA = a[0].ToString()+ " "+ b[0].ToString()+" " + c[0].ToString()+" " + d[0].ToString();
+                        grB= a[1].ToString() + " " + b[1].ToString() + " " + c[1].ToString() + " " + d[1].ToString();
+                        grC = a[2].ToString() + " " + b[2].ToString() + " " + c[2].ToString();
+                        /* await Bot.SendTextMessageAsync(
+                             message.Chat.Id,
+                             "Choose",
+                             replyMarkup: inlineKeyboard);*/
+                        //break;
+                        await Bot.SendTextMessageAsync(message.Chat.Id, grA +"\n"+ grB+"\n" + grC);
+                        Debug.WriteLine(grA);
+                        Debug.WriteLine(message.Chat.Id);
+                        using (StreamWriter outputFile=new StreamWriter("telegramId.txt",true))
+                        {
+                            outputFile.WriteLine("\n"+message.Chat.Id);
+                            
+                        }
+                            //await Bot.SendTextMessageAsync(150712688, "ты пидор");
+
+                            break;
+                    case "/match":
+                        if (message.Text.Length != 6)
+                        {
+                            using (StreamWriter outputFile = new StreamWriter("match.txt", true))
+                            {
+
+                                outputFile.WriteLine("\n" + message.Chat.Id + " " + message.Text + " " + DateTime.Now);
+
+
+                            }
+                            await Bot.SendTextMessageAsync(message.Chat.Id, "Ваш результат записан");
+                            await Bot.SendTextMessageAsync(120086825, "Новый матч");
+
+                        }
+                        else
+                            await Bot.SendTextMessageAsync(message.Chat.Id, "Запишите результат");
+
+                        break;
+                    case "/register":
+                        if (message.Text != "/register")
+                        {
+                            var str="";
+                            str=message.Text.Replace("/register ", "");
+                            Debug.WriteLine(message.Chat.Id + "" + str);
+                        }
                         break;
                 }
             }
